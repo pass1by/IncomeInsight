@@ -1,0 +1,72 @@
+[
+    {
+        "timestamp": "20250508_145051",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_145302",
+        "regression_score": 0.99,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_145621",
+        "regression_score": 0.11,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_145653",
+        "regression_score": 0.99,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_145742",
+        "regression_score": 0.8,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_161114",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_161226",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_161420",
+        "regression_score": 0.99,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_163654",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_175749",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_182611",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_182642",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_201039",
+        "regression_score": 0.3,
+        "cluster": 0
+    },
+    {
+        "timestamp": "20250508_220231",
+        "regression_score": 0.3,
+        "cluster": 0
+    }
+]

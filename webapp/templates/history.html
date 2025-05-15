@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史预测结果浏览</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+            margin-left: 20px;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .image-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+
+        .image-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-records {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>历史预测结果浏览</h1>
+    <a href="/">返回首页</a>
+
+    <div class="container">
+        {% if pca_images %}
+            {% for img in pca_images %}
+                <div class="image-card">
+                    <h3>{{ img }}</h3>
+                    <img src="{{ url_for('static', filename=img) }}" alt="PCA图">
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-records">暂无历史记录。</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 预测历史记录页面</p>
+    </footer>
+
+</body>
+</html>

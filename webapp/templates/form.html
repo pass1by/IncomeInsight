@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>个人收入预测系统</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+#backToTopBtn {
+    display: none; /* 初始隐藏 */
+    position: fixed;
+    bottom: 40px; /* 距离底部40px */
+    left: 50%; /* 左边界放到屏幕宽度的一半 */
+    transform: translateX(-50%); /* 左移自己宽度的一半，真正居中 */
+    z-index: 99;
+    background-color: transparent; /* 背景透明 */
+    color: #4CAF50; /* 图标颜色绿色 */
+    border: none; /* 无边框 */
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 28px;
+    transition: all 0.3s ease;
+}
+#backToTopBtn:hover {
+    transform: translateX(-50%) scale(1.2); /* hover时放大，但保持居中 */
+    color: #45a049; /* 颜色变深 */
+}
+
+
+
+        .image-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    margin: 30px auto;
+    width: 90%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.image-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+.image-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.image-card h2 {
+    margin-top: 0;
+    color: #333;
+}
+        .container {
+            width: 85%;
+            margin: auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        input, select {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        input[type="submit"], button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 220px;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #45a049;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .summary {
+            background-color: #eef6fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .nav-buttons a {
+            margin: 10px;
+        }
+        small {
+            color: gray;
+        }
+    </style>
+</head>
+<button onclick="scrollToTop()" id="backToTopBtn" title="回到顶部">⬆️</button>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1>💼 个人收入预测系统</h1>
+
+        <form method="POST">
+
+        年龄:
+        <input type="number" name="age" value="30" min="0" max="100" required><br><br>
+
+        工种:
+        <select name="workclass" required>
+            <option value="Private">私人企业</option>
+            <option value="Self-emp-not-inc">个体户-未注册</option>
+            <option value="Self-emp-inc">个体户-已注册</option>
+            <option value="Federal-gov">联邦政府</option>
+            <option value="Local-gov">地方政府</option>
+            <option value="State-gov">州政府</option>
+            <option value="Without-pay">无薪工作</option>
+            <option value="Never-worked">从未工作</option>
+        </select><br><br>
+        学历:
+<select name="education" required>
+    <option value="Preschool">学前班（幼儿园）</option>
+    <option value="1st-4th">小学1到4年级</option>
+    <option value="5th-6th">小学5到6年级</option>
+    <option value="7th-8th">七八年级</option>
+    <option value="9th">九年级（初三）</option>
+    <option value="10th">高中10年级</option>
+    <option value="11th">高中11年级</option>
+    <option value="12th">高中12年级</option>
+    <option value="HS-grad">高中毕业</option>
+    <option value="Some-college">部分大学课程</option>
+    <option value="Assoc-voc">副学士（职业型）</option>
+    <option value="Assoc-acdm">副学士（学术型）</option>
+    <option value="Bachelors">学士</option>
+    <option value="Masters">硕士</option>
+    <option value="Prof-school">专业学校（法学院/医学院）</option>
+    <option value="Doctorate">博士</option>
+</select><br><br>
+        婚姻状况:
+        <select name="marital-status" required>
+            <option value="Never-married">从未结婚</option>
+            <option value="Married-civ-spouse">已婚（有配偶）</option>
+            <option value="Divorced">离婚</option>
+            <option value="Separated">分居</option>
+            <option value="Widowed">丧偶</option>
+            <option value="Married-spouse-absent">已婚-配偶缺席</option>
+        </select><br><br>
+
+        职业:
+        <select name="occupation" required>
+            <option value="Tech-support">技术支持</option>
+            <option value="Craft-repair">工艺维修</option>
+            <option value="Other-service">其他服务</option>
+            <option value="Sales">销售</option>
+            <option value="Exec-managerial">高管/管理</option>
+            <option value="Prof-specialty">专业技术</option>
+            <option value="Handlers-cleaners">搬运/清洁</option>
+            <option value="Machine-op-inspct">机器操作/检验</option>
+            <option value="Adm-clerical">行政文员</option>
+            <option value="Farming-fishing">农业/渔业</option>
+            <option value="Transport-moving">运输/搬运</option>
+            <option value="Protective-serv">安保</option>
+            <option value="Priv-house-serv">私人家庭服务</option>
+            <option value="Armed-Forces">军队</option>
+        </select><br><br>
+
+        关系:
+        <select name="relationship" required>
+            <option value="Wife">妻子</option>
+            <option value="Own-child">子女</option>
+            <option value="Husband">丈夫</option>
+            <option value="Not-in-family">非家庭成员</option>
+            <option value="Other-relative">其他亲属</option>
+            <option value="Unmarried">未婚</option>
+        </select><br><br>
+
+        种族:
+        <select name="race" required>
+            <option value="White">白人</option>
+            <option value="Asian-Pac-Islander">亚太裔</option>
+            <option value="Amer-Indian-Eskimo">美洲印第安人/爱斯基摩人</option>
+            <option value="Other">其他</option>
+            <option value="Black">黑人</option>
+        </select><br><br>
+
+        性别:
+        <select name="sex" required>
+            <option value="Male">男性</option>
+            <option value="Female">女性</option>
+        </select><br><br>
+
+        资本增益:
+        <input type="number" name="capital-gain" value="0" min="0" max="99999" required>
+        <br><small style="color:gray;">资本增益是指通过投资获得的收益（美元），如果没有投资收入，请填写0。</small><br><br>
+
+        资本损失:
+        <input type="number" name="capital-loss" value="0" min="0" max="5000" required>
+        <br><small style="color:gray;">资本损失是指投资亏损（美元），如果没有亏损，请填写0。</small><br><br>
+
+        每周工时:
+        <input type="number" name="hours-per-week" value="40" min="0" max="100" required>
+        <br><small style="color:gray;">标准工作时间是40小时/周，兼职或加班请如实填写。</small><br><br>
+
+        国家:
+        <select name="native-country" required>
+            <option value="United-States">美国</option>
+            <option value="Mexico">墨西哥</option>
+            <option value="Philippines">菲律宾</option>
+            <option value="Germany">德国</option>
+            <option value="Canada">加拿大</option>
+            <option value="Puerto-Rico">波多黎各</option>
+            <option value="India">印度</option>
+            <option value="China">中国</option>
+            <option value="Cuba">古巴</option>
+            <option value="England">英国</option>
+            <option value="Japan">日本</option>
+            <option value="Vietnam">越南</option>
+            <option value="Ireland">爱尔兰</option>
+            <option value="France">法国</option>
+            <option value="South-Korea">韩国</option>
+            <option value="Other">其他国家</option>
+        </select><br><br>
+
+        <input type="submit" value="提交预测">
+    </form>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="/statistics">
+            <button type="button">📊 查看系统统计分析</button>
+        </a>
+        <a href="/history">
+            <button type="button">📜 查看历史预测结果</button>
+        </a>
+    </div>
+
+    {% if result %}
+    <div class="card">
+        <h2>📋 预测总结</h2>
+        <div class="summary">
+            {{ result.summary_text }}
+        </div>
+
+<div class="image-card">
+    <h2>🎯 PCA降维位置图</h2>
+    <img src="{{ url_for('static', filename=result.pca_img_path.split('/')[-1]) }}" alt="PCA图">
+</div>
+
+<div class="image-card">
+    <h2>📈 单人特征雷达图</h2>
+    <img src="{{ url_for('static', filename=result.radar_img_path.split('/')[-1]) }}" alt="雷达图">
+</div>
+
+        <br><br>
+        <a href="{{ result.download_link }}" download>
+            <button type="button">📄 下载本次预测总结</button>
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+<script>
+// 当用户滚动超过100px时，显示按钮
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    let mybutton = document.getElementById("backToTopBtn");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+// 点击按钮，平滑回到顶部
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+</script>
+
+</html>
