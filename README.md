@@ -88,7 +88,7 @@ pip install -r requirements.txt
 ## 快速开始
 ### 1. 克隆或下载项目
 ```bash
-git clone https://github.com/你的仓库地址/IncomeInsight.git
+git clone https://github.com/pass1by/IncomeInsight.git
 cd IncomeInsight
 ```
 或者直接将项目文件夹复制到本地。
